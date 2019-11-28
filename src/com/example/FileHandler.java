@@ -1,3 +1,5 @@
+package com.example;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -21,13 +23,8 @@ class FileHandler {
         if (checkFile()) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
                 ArrayList<Employee> list = new ArrayList<>();
-                while (true) {
-                    Object obj;
-                    try {
-                        obj = ois.readObject();
-                    } catch (EOFException e) {
-                        break;
-                    }
+                Object obj;
+                while ((obj = ois.readObject()) != null) {
                     Employee e = (Employee) obj;
                     list.add(e);
                 }

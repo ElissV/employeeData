@@ -1,3 +1,5 @@
+package com.example;
+
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -7,7 +9,7 @@ class Employee implements Serializable {
     private String name;
     private int age;
     private Job job;
-    static final long serialVersionUID = 1L;
+    static final long serialVersionUID = 2L;
 
     private Employee(String name, int age, Job job) {
         int employeeQty = EmployeeData.getEmployeeQty();
@@ -54,7 +56,7 @@ class Employee implements Serializable {
             }
             if (!(age < minAge || age > maxAge)) return age;
             else { System.out.println("Employee's age has to be greater than " + minAge +
-                                        " and less than" + maxAge); }
+                                        " and less than " + maxAge); }
         }
     }
 

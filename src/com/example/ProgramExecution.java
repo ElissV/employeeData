@@ -1,10 +1,14 @@
+package com.example;
+
 import java.util.Scanner;
 
-public class Main {
+abstract class ProgramExecution {
 
-    public static void main(String[] args) {
-        FileHandler.readFile();     // Reads employees (which were added in previous sessions) from file and adds them into ArrayList
-        boolean inSystem = true;
+    private static boolean isRunning = false;
+
+    private static void execute() {
+        FileHandler.readFile();         // Reads employees (which were added in previous sessions) from
+        boolean inSystem = true;        // a file and adds them into ArrayList
         while (inSystem) {
             Command.showValues();
             Scanner scan = new Scanner(System.in);
@@ -20,4 +24,12 @@ public class Main {
             inSystem = CommandHandler.executeCommand(choice);
         }
     }
+
+    static void start() {
+        if (!isRunning) {
+            execute();
+            isRunning = true;
+        }
+    }
+
 }

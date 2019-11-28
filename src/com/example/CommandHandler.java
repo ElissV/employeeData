@@ -1,3 +1,5 @@
+package com.example;
+
 class CommandHandler {
 
     static boolean executeCommand(int commandNr) {

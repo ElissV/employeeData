@@ -1,3 +1,5 @@
+package com.example;
+
 import java.util.EnumSet;
 
 enum Command {
