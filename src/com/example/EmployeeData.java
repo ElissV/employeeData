@@ -1,5 +1,6 @@
 package com.example;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,22 +40,17 @@ class EmployeeData {
     }
 
     static void showEmployeeQty() {
+        System.out.println("\n");
         for (Job job : Job.values()) {
             int employeeWithCurrentJob = 0;
             for (Employee e : employees) {
                 if (e.getJob() == job) employeeWithCurrentJob++;
             }
-
-            int jobNameLength = job.toString().length();
-            System.out.print(job + ": \t");
-            if (jobNameLength <= 6) System.out.print("\t\t\t\t\t");
-            else if (jobNameLength <= 8) System.out.print("\t\t\t\t");
-            else if (jobNameLength <= 17) System.out.print("\t\t");
-            else if (jobNameLength <= 21) System.out.print("\t");
-            System.out.print(employeeWithCurrentJob + "\n");
+            System.out.printf("%-25s%6d\n",
+                    job, employeeWithCurrentJob);
         }
-        System.out.println("-----------------------------");
-        System.out.println("TOTAL: \t\t\t\t\t\t" + employeeQty + "\n");
+        System.out.println("-------------------------------");
+        System.out.printf("%-25s%6d\n", "TOTAL:", employeeQty);
     }
 
     static void deleteEmployee() {
