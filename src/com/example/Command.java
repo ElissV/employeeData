@@ -23,8 +23,13 @@ enum Command {
         System.out.println("\n");
         int i = 1;
         for (Command c : commands) {
-            System.out.println(i + " - " + c.name);
+            System.out.println(i + " - " + c.toString());
             i++;
         }
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
