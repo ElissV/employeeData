@@ -20,9 +20,10 @@ class Employee implements Serializable {
     }
 
     public String toString() {
-        String data = "ID: " + id + "\nName: " + name + "\nAge: " +
-                age + "\nJob: " + job + "\n";
-        return data;
+        return "ID: " + id +
+                "\nName: " + name +
+                "\nAge: " + age +
+                "\nJob: " + job + "\n";
     }
 
     static void addNewEmployee() {

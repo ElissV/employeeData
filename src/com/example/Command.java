@@ -3,13 +3,19 @@ package com.example;
 import java.util.EnumSet;
 
 enum Command {
-    ENTER_NEW_EMPLOYEE,
-    SEE_AVERAGE_EMPLOYEE_AGE,
-    SEE_EMPLOYEE_LIST,
-    SEE_EMPLOYEE_COUNT,
-    DELETE_EMPLOYEE,
-    EXIT;
 
+    ENTER_NEW_EMPLOYEE("Enter new employee"),
+    SEE_AVERAGE_EMPLOYEE_AGE("See average employee age"),
+    SEE_EMPLOYEE_LIST ("See employee list"),
+    SEE_EMPLOYEE_COUNT("See employee count"),
+    DELETE_EMPLOYEE("Delete employee"),
+    EXIT("Exit");
+
+    private String name;
+
+    Command(String name) {
+        this.name = name;
+    }
 
     private static EnumSet<Command> commands = EnumSet.allOf(Command.class);
 
@@ -17,9 +23,7 @@ enum Command {
         System.out.println("\n");
         int i = 1;
         for (Command c : commands) {
-            String str = c.toString().toLowerCase().replaceAll("_", " ");
-            str = str.substring(0, 1).toUpperCase() + str.substring(1);
-            System.out.println(i + " - " + str);
+            System.out.println(i + " - " + c.name);
             i++;
         }
     }

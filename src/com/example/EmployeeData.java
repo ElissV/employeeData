@@ -1,6 +1,5 @@
 package com.example;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +9,8 @@ class EmployeeData {
     private static int employeeQty = 0;
 
 
-    static void fillEmployeeList(ArrayList<Employee> employeesFromFile) {   // Employee list is being filled after the file with employee list is read
+    // Employee list is being filled after the file with employee list is read
+    static void fillEmployeeList(ArrayList<Employee> employeesFromFile) {
         employees.addAll(employeesFromFile);
         employeeQty = employees.size();
     }
