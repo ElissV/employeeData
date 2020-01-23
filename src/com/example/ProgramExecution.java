@@ -2,20 +2,20 @@ package com.example;
 
 import java.util.Scanner;
 
-abstract class ProgramExecution {
+class ProgramExecution {
 
     private static boolean isRunning = false;
 
-    static void start() {
+    void start() {
         if (!isRunning) {
             execute();
             isRunning = true;
         }
     }
 
-    private static void execute() {
-        FileHandler.readFile();         // Reads employees (which were added in previous sessions) from
-        boolean inSystem = true;        // a file and adds them into ArrayList
+    private void execute() {
+        FileHandler.readFile();
+        boolean inSystem = true;
         while (inSystem) {
             Command.showValues();
             int choice = getAnswerAsNumber();
@@ -23,7 +23,7 @@ abstract class ProgramExecution {
         }
     }
 
-    private static int getAnswerAsNumber() {
+    private int getAnswerAsNumber() {
         Scanner scan = new Scanner(System.in);
         int choice;
         try {

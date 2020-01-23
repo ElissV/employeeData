@@ -1,21 +1,25 @@
 package com.example;
 
-import java.util.EnumSet;
-
 enum Job {
-    SOFTWARE_ENGINEER,
-    QUALITY_ASSURANCE,
-    SOFTWARE_ENGINEER_LEAD,
-    QUALITY_ASSURANCE_LEAD,
-    PRODUCT_DESIGNER,
-    PRODUCT_DESIGNER_LEAD,
-    SUPPORT,;
 
-    private static EnumSet<Job> jobs = EnumSet.allOf(Job.class);
+    SOFTWARE_ENGINEER("Software engineer"),
+    QUALITY_ASSURANCE("Quality assurance"),
+    SOFTWARE_ENGINEER_LEAD("Software engineer lead"),
+    QUALITY_ASSURANCE_LEAD("Quality assurance lead"),
+    PRODUCT_DESIGNER("Product designer"),
+    PRODUCT_DESIGNER_LEAD("Product designer lead"),
+    SUPPORT("Support");
+
+    private String name;
+
+    Job(String name) {
+        this.name = name;
+    }
+
 
     public static void showJobs() {
         int index = 1;
-        for (Job job : jobs) {
+        for (Job job : Job.values()) {
             System.out.println(index + " - " + job);
             index++;
         }
@@ -26,9 +30,7 @@ enum Job {
     }
 
     public String toString() {
-        String jobName = name().toLowerCase().replaceAll("_", " ");
-        jobName = jobName.substring(0, 1).toUpperCase() + jobName.substring(1);
-        return jobName;
+        return name;
     }
 
 }

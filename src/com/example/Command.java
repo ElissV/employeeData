@@ -12,18 +12,17 @@ enum Command {
     EXIT("Exit");
 
     private String name;
+    private static EnumSet<Command> commands = EnumSet.allOf(Command.class);
 
     Command(String name) {
         this.name = name;
     }
 
-    private static EnumSet<Command> commands = EnumSet.allOf(Command.class);
-
     public static void showValues() {
         System.out.println("\n");
         int i = 1;
         for (Command c : commands) {
-            System.out.println(i + " - " + c.toString());
+            System.out.println(i + " - " + c);
             i++;
         }
     }
