@@ -76,7 +76,11 @@ class Employee implements Serializable {
         return job;
     }
 
-    Job getJob() { return job; }
+    Job getJob() {
+        return job;
+    }
 
-    int getAge() { return age; }
+    int getAge() {
+        return age;
+    }
 }
