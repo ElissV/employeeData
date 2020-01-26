@@ -7,17 +7,17 @@ public class Main {
     private static boolean programIsRunning = false;
 
     public static void main(String[] args) {
-        start();
+        checkIfCanStart();
     }
 
-    private static void start() {
+    private static void checkIfCanStart() {
         if (!programIsRunning) {
             programIsRunning = true;
-            execute();
+            start();
         }
     }
 
-    private static void execute() {
+    private static void start() {
         FileHandler.readFile();
         while (programIsRunning) {
             Command.showValues();

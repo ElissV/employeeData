@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de8d2d79-80ac-4d21-8dd0-87cc2b23f526" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/employees.bin" beforeDir="false" afterPath="$PROJECT_DIR$/resources/employees.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,8 +20,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="459">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#134#135#0" expanded="true" />
                 <element signature="e#157#158#0" expanded="true" />
@@ -270,12 +268,12 @@
       <workItem from="1579799452844" duration="1346000" />
       <workItem from="1579869984561" duration="597000" />
       <workItem from="1579978597356" duration="1246000" />
-      <workItem from="1580056354046" duration="3651000" />
+      <workItem from="1580056354046" duration="6852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113076000" />
+    <option name="totallyTimeSpent" value="116277000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -744,8 +742,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="459">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#134#135#0" expanded="true" />
             <element signature="e#157#158#0" expanded="true" />
