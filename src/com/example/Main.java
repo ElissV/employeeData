@@ -4,38 +4,40 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static boolean isRunning = false;
+    private static boolean programIsRunning = false;
 
     public static void main(String[] args) {
         start();
     }
 
     private static void start() {
-        if (!isRunning) {
+        if (!programIsRunning) {
+            programIsRunning = true;
             execute();
-            isRunning = true;
         }
     }
 
     private static void execute() {
         FileHandler.readFile();
-        boolean inSystem = true;
-        while (inSystem) {
+        while (programIsRunning) {
             Command.showValues();
-            int choice = getAnswerAsNumber();
-            inSystem = CommandHandler.executeCommand(choice);
+            int choice = getUserChoice();
+            programIsRunning = CommandHandler.executeCommand(choice);
         }
     }
 
-    private static int getAnswerAsNumber() {
+    private static int getUserChoice() {
         Scanner scan = new Scanner(System.in);
-        int choice;
+        return convertToInt(scan.nextLine());
+    }
+
+    private static int convertToInt(String choice) {
         try {
-            choice = Integer.parseInt(scan.nextLine());
-            if (choice != 0) return choice;
+            return Integer.parseInt(choice);
         } catch (NumberFormatException e) {
             System.out.println("You should enter only numbers");
+            return getUserChoice();
         }
-        return getAnswerAsNumber();
     }
+
 }
