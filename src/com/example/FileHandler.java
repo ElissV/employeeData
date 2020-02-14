@@ -28,7 +28,7 @@ class FileHandler {
                     Employee e = (Employee) obj;
                     list.add(e);
                 }
-                EmployeeData.fillEmployeeList(list);
+                EmployeeDataRequest.fillEmployeeList(list);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -37,9 +37,9 @@ class FileHandler {
 
     static void writeToFile() {
         checkFile();    // If the file doesn't exist, then it adds it
-        if (!EmployeeData.employeeListEmpty()) {
+        if (!EmployeeDataRequest.employeeListEmpty()) {
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath, false))) {
-                ArrayList<Employee> employees = EmployeeData.getList();
+                ArrayList<Employee> employees = EmployeeDataRequest.getList();
                 for (Employee employee : employees) {
                     oos.writeObject(employee);
                 }

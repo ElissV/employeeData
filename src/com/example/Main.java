@@ -28,10 +28,10 @@ public class Main {
 
     private static int getUserChoice() {
         Scanner scan = new Scanner(System.in);
-        return convertToInt(scan.nextLine());
+        return convertChoiceToInt(scan.nextLine());
     }
 
-    private static int convertToInt(String choice) {
+    private static int convertChoiceToInt(String choice) {
         try {
             return Integer.parseInt(choice);
         } catch (NumberFormatException e) {

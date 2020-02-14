@@ -9,16 +9,16 @@ class CommandHandler {
                 Employee.addNewEmployee();
                 break;
             case 2:
-                EmployeeData.showAverageAge();
+                EmployeeDataRequest.showAverageAge();
                 break;
             case 3:
-                EmployeeData.showEmployees();
+                EmployeeDataRequest.showEmployees();
                 break;
             case 4:
-                EmployeeData.showEmployeeQty();
+                EmployeeDataRequest.showEmployeeQty();
                 break;
             case 5:
-                EmployeeData.deleteEmployee();
+                EmployeeDataRequest.deleteEmployee();
                 break;
             case 6:
                 FileHandler.writeToFile();      // Writes ArrayList with employees to file

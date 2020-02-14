@@ -12,7 +12,11 @@ enum Command {
     EXIT("Exit");
 
     private String name;
-    private static EnumSet<Command> commands = EnumSet.allOf(Command.class);
+    private static EnumSet<Command> commands;
+
+    static {
+        commands = EnumSet.allOf(Command.class);
+    }
 
     Command(String name) {
         this.name = name;
@@ -31,4 +35,5 @@ enum Command {
     public String toString() {
         return name;
     }
+
 }
