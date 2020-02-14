@@ -1,8 +1,8 @@
 package com.example;
 
-public class EmployeeStatistics {
+public class EmployeeStatistics{
 
-    static void showAverageAge() {
+    void showAverageAge() {
         int ageSum = 0;
         for (Employee employee : employees) {
             ageSum += employee.getAge();
@@ -11,7 +11,7 @@ public class EmployeeStatistics {
         System.out.println("Average age is: " + employeeAverageAge);
     }
 
-    static void showEmployeeQty() {
+    void showEmployeeQty() {
         System.out.println("\n");
         for (Job job : Job.values()) {
             int employeeWithCurrentJob = 0;
@@ -25,7 +25,7 @@ public class EmployeeStatistics {
         System.out.printf("%-25s%6d\n", "TOTAL:", employeeQty);
     }
 
-    static void showEmployees() {
+    void showEmployees() {
         if (employees.size() == 0) {
             System.out.println("No employees found.");
             return;

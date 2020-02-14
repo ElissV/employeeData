@@ -22,7 +22,9 @@ public class Main {
         while (programIsRunning) {
             Command.showValues();
             int choice = getUserChoice();
-            programIsRunning = CommandHandler.executeCommand(choice);
+            if (numInRange(choice)) {
+                programIsRunning = passCommandOnAndReturnTrueIfContinue(choice);
+            }
         }
     }
 
@@ -38,6 +40,38 @@ public class Main {
             System.out.println("You should enter only numbers");
             return getUserChoice();
         }
+    }
+
+    private static boolean numInRange(int num) {
+        if (num >= 0) {
+            return num < Command.values().length;
+        }
+        return false;
+    }
+
+    private static boolean passCommandOnAndReturnTrueIfContinue(int choice) {
+        EmployeeStatistics statistics = new EmployeeStatistics();
+        EmployeeList list = new EmployeeList();
+
+        if (choice == 1)
+            list.createNewEmployee();
+        else if (choice == 2)
+            statistics.showAverageAge();
+        else if (choice == 3)
+            statistics.showEmployees();
+        else if (choice == 4)
+            statistics.showEmployeeQty();
+        else if (choice == 5)
+            list.deleteEmployee();
+        else return systemExit();
+
+        return true;
+    }
+
+    private static boolean systemExit() {
+        FileHandler.writeToFile();
+        System.out.println("You logged out of the system");
+        return false;
     }
 
 }

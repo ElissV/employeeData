@@ -17,12 +17,16 @@ public class EmployeeList {
         employees.addAll(employeesFromFile);
     }
 
+    void createNewEmployee() {
+
+    }
+
     static void addEmployeeToList(Employee e) {
         if (e != null)
             employees.add(e);
     }
 
-    static void deleteEmployee() {
+    void deleteEmployee() {
         Employee employee = getEmployee();
         if (employee != null) {
             employees.remove(employee);
