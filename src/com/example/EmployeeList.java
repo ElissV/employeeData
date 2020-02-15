@@ -13,7 +13,7 @@ class EmployeeList {
     }
 
 
-    static void FillEmployeeListAfterReadingFile(List<Employee> employeesFromFile) {
+    void fillEmployeeList(List<Employee> employeesFromFile) {
         employees.addAll(employeesFromFile);
         EmployeeStatistics.updateList(employees);
     }
@@ -25,14 +25,14 @@ class EmployeeList {
         addEmployeeToList(e);
     }
 
-    private static void addEmployeeToList(Employee e) {
+    private void addEmployeeToList(Employee e) {
         if (e != null)
             employees.add(e);
         EmployeeStatistics.updateList(employees);
     }
 
     void deleteEmployee() {
-        Employee employee = getEmployee();
+        Employee employee = getChoiceAndFindEmployee();
         if (employee != null) {
             employees.remove(employee);
             System.out.println("Employee deleted successfully");
@@ -40,28 +40,40 @@ class EmployeeList {
         EmployeeStatistics.updateList(employees);
     }
 
-    private static Employee getEmployee() {
-        Scanner scan = new Scanner(System.in);
+    private Employee getChoiceAndFindEmployee() {
         while(true) {
-            String input = "";
             System.out.println("Write employee ID to delete. Enter X to return to menu.");
             showEmployees();
-            try {
-                input = scan.nextLine();
-                int id = Integer.parseInt(input);
-                Employee employee = null;
-                try {
-                    employee = employees.get(id - 1);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("There is no employee with this ID \n");
-                }
-                if (employee != null) return employee;
-            }
-            catch (NumberFormatException e) {
-                if (input.equals("x") || input.equals("X")) return null;
-                System.out.println("You should enter only numbers");
-            }
+            int id = getUserChoice();
+            if (id == -1) return null;
+            Employee employee = getEmployeeByID(id);
+            if (employee != null)
+                return employee;
         }
+    }
+
+    private int getUserChoice() {
+        Scanner scan = new Scanner(System.in);
+        String input = "";
+        try {
+            input = scan.nextLine();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            if (input.equalsIgnoreCase("x")) return 0;
+            System.out.println("You should enter only numbers");
+            return -1;
+        }
+    }
+
+    private Employee getEmployeeByID(int id) {
+        Employee employee;
+        try {
+            employee = employees.get(id - 1);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("There is no employee with this ID \n");
+            employee = null;
+        }
+        return employee;
     }
 
     void showEmployees() {
