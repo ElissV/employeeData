@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static FileHandler fileHandler;
     private static boolean programIsRunning = false;
 
     public static void main(String[] args) {
+        fileHandler = new FileHandler();
         checkIfCanStart();
     }
 
@@ -18,15 +20,22 @@ public class Main {
     }
 
     private static void start() {
-        FileHandler.readFile();
+        fileHandler.readFile();
         while (programIsRunning) {
             Command.showValues();
             int choice = getUserChoice();
+            if (choice == 6) systemExit();
             if (numInRange(choice)) {
-                programIsRunning =
-                        passCommandOnAndReturnTrueIfContinue(choice);
+                passCommandOn(choice);
             }
         }
+    }
+
+    private static boolean numInRange(int num) {
+        if (num >= 0) {
+            return num < Command.values().length;
+        }
+        return false;
     }
 
     private static int getUserChoice() {
@@ -42,15 +51,8 @@ public class Main {
             return getUserChoice();
         }
     }
-
-    private static boolean numInRange(int num) {
-        if (num >= 0) {
-            return num < Command.values().length;
-        }
-        return false;
-    }
-
-    private static boolean passCommandOnAndReturnTrueIfContinue(int choice) {
+    
+    private static void passCommandOn(int choice) {
         EmployeeStatistics statistics = new EmployeeStatistics();
         EmployeeList list = new EmployeeList();
 
@@ -64,15 +66,12 @@ public class Main {
             statistics.showEmployeeQty();
         else if (choice == 5)
             list.deleteEmployee();
-        else return systemExit();
-
-        return true;
     }
 
-    private static boolean systemExit() {
-        FileHandler.writeToFile();
+    private static void systemExit() {
+        fileHandler.writeToFile();
         System.out.println("You logged out of the system");
-        return false;
+        programIsRunning = false;
     }
 
 }

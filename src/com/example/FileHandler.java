@@ -2,50 +2,80 @@ package com.example;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 class FileHandler {
 
-    private static String filePath = "resources/employees.bin";
-    private static File file = new File(filePath);
+    private static EmployeeList employeeList;
+    private static String filePath;
+    private static File file;
 
-    private static boolean checkFile() {      // Checks if the file exists and it isn't empty
+
+    static {
+        employeeList = new EmployeeList();
+        filePath = "resources/employees.bin";
+        file = new File(filePath);
+    }
+
+    private void createFileIfNotExists() {
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e1) {
-                e1.printStackTrace();
+                System.out.println("Error. Couldn't create file");
+                System.exit(-1);
             }
         }
-        return file.length() != 0;
     }
 
-    static void readFile() {
-        if (checkFile()) {
+    void readFile() {
+        createFileIfNotExists();
+        if (file.length() != 0) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-                ArrayList<Employee> list = new ArrayList<>();
-                Object obj;
-                while ((obj = ois.readObject()) != null) {
-                    Employee e = (Employee) obj;
-                    list.add(e);
-                }
-                EmployeeDataRequest.fillEmployeeList(list);
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
-    static void writeToFile() {
-        checkFile();    // If the file doesn't exist, then it adds it
-        if (!EmployeeDataRequest.employeeListEmpty()) {
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath, false))) {
-                ArrayList<Employee> employees = EmployeeDataRequest.getList();
-                for (Employee employee : employees) {
-                    oos.writeObject(employee);
-                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void convertFileContentsToObjects(ObjectInputStream ois) {
+        List<Employee> listFromFile = new ArrayList<>();
+        try {
+            Object obj;
+            while ((obj = ois.readObject()) != null) {
+                Employee e = (Employee) obj;
+                listFromFile.add(e);
+            }
+        } catch (ClassNotFoundException | IOException e) {
+            System.out.println("Error. Couldn't read employee file");
+        }
+        employeeList.fillEmployeeList(listFromFile);
+    }
+
+    void writeToFile() {
+        createFileIfNotExists();
+        if (!EmployeeList.employeeListIsEmpty()) {
+            writeObjects();
+        }
+    }
+
+    private void writeObjects() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(createFileOutputStream())) {
+            List<Employee> employees = employeeList.getList();
+            for (Employee employee : employees) {
+                oos.writeObject(employee);
+            }
+        } catch (IOException e) {
+            System.out.println("Error. Couldn't write data to file");
+        }
+    }
+
+    private FileOutputStream createFileOutputStream() {
+        try {
+            return new FileOutputStream(filePath, false);
+        } catch (FileNotFoundException e) {
+            return null;
         }
     }
 }

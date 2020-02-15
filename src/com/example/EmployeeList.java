@@ -87,7 +87,7 @@ class EmployeeList {
     }
 
 
-    static List<Employee> getList() {
+    List<Employee> getList() {
         return employees;
     }
 
