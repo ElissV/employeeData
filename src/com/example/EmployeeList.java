@@ -17,11 +17,14 @@ public class EmployeeList {
         employees.addAll(employeesFromFile);
     }
 
-    void createNewEmployee() {
-
+    void createNewEmployeeAndAddToList() {
+        EmployeeDataRequest dataRequest = new EmployeeDataRequest();
+        dataRequest.dataRequest();
+        Employee e = new Employee(dataRequest);
+        addEmployeeToList(e);
     }
 
-    static void addEmployeeToList(Employee e) {
+    private static void addEmployeeToList(Employee e) {
         if (e != null)
             employees.add(e);
     }

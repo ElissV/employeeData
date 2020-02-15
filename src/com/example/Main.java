@@ -23,7 +23,8 @@ public class Main {
             Command.showValues();
             int choice = getUserChoice();
             if (numInRange(choice)) {
-                programIsRunning = passCommandOnAndReturnTrueIfContinue(choice);
+                programIsRunning =
+                        passCommandOnAndReturnTrueIfContinue(choice);
             }
         }
     }
@@ -54,7 +55,7 @@ public class Main {
         EmployeeList list = new EmployeeList();
 
         if (choice == 1)
-            list.createNewEmployee();
+            list.createNewEmployeeAndAddToList();
         else if (choice == 2)
             statistics.showAverageAge();
         else if (choice == 3)

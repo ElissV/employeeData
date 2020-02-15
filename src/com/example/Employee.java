@@ -10,12 +10,23 @@ class Employee implements Serializable {
     private Job job;
     static final long serialVersionUID = 2L;
 
-    private Employee(String name, int age, Job job) {
-        int employeeQty = new EmployeeList().getEmployeeQty();
-        id = employeeQty + 1;
+    Employee(EmployeeDataRequest e) {
+        this.id = getNextID();
+        this.name = e.getName();
+        this.age = e.getAge();
+        this.job = e.getJob();
+    }
+
+    Employee(String name, int age, Job job) {
+        this.id = getNextID();
         this.name = name;
         this.age = age;
         this.job = job;
+    }
+
+    private int getNextID() {
+        int employeeQty = new EmployeeList().getEmployeeQty();
+        return employeeQty + 1;
     }
 
     public String toString() {
