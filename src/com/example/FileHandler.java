@@ -32,7 +32,7 @@ class FileHandler {
         createFileIfNotExists();
         if (file.length() != 0) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-
+                convertFileContentsToObjects(ois);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -41,14 +41,19 @@ class FileHandler {
 
     private void convertFileContentsToObjects(ObjectInputStream ois) {
         List<Employee> listFromFile = new ArrayList<>();
+        Object obj;
         try {
-            Object obj;
             while ((obj = ois.readObject()) != null) {
                 Employee e = (Employee) obj;
                 listFromFile.add(e);
             }
-        } catch (ClassNotFoundException | IOException e) {
-            System.out.println("Error. Couldn't read employee file");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Error. Couldn't read employee file. \nClassNotFound exception");
+        } catch (EOFException ignored) {
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error. Couldn't read employee file. \nIOE exception");
         }
         employeeList.fillEmployeeList(listFromFile);
     }

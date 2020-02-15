@@ -45,7 +45,7 @@ class EmployeeList {
             System.out.println("Write employee ID to delete. Enter X to return to menu.");
             showEmployees();
             int id = getUserChoice();
-            if (id == -1) return null;
+            if (id == 0) return null;
             Employee employee = getEmployeeByID(id);
             if (employee != null)
                 return employee;

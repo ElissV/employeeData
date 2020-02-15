@@ -51,7 +51,7 @@ public class Main {
             return getUserChoice();
         }
     }
-    
+
     private static void passCommandOn(int choice) {
         EmployeeStatistics statistics = new EmployeeStatistics();
         EmployeeList list = new EmployeeList();

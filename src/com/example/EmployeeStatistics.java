@@ -6,12 +6,25 @@ class EmployeeStatistics {
 
     private static List<Employee> employees;
 
+
     static void updateList(List<Employee> e) { employees = e; }
 
     void showAverageAge() {
-        int ageSum = getEmployeeAgeSum();
-        int employeeAverageAge = ageSum / employees.size();
-        System.out.println("Average employee age is: " + employeeAverageAge);
+        if (employeeListCreated()) {
+            if (employees.size() > 0) {
+                int ageSum = getEmployeeAgeSum();
+                int employeeAverageAge = ageSum / employees.size();
+                System.out.println("Average employee age is: " + employeeAverageAge);
+            } else
+                System.out.println("No employee data at the moment");
+        }
+    }
+
+    private boolean employeeListCreated() {
+        if (employees != null)
+            return true;
+        System.out.println("No employee data at the moment");
+        return false;
     }
 
     private int getEmployeeAgeSum() {
@@ -19,11 +32,13 @@ class EmployeeStatistics {
     }
 
     void showEmployeeQty() {
-        System.out.println("\n");
-        for (Job job : Job.values()) {
-            showEmployeesWithCertainJob(job);
+        if (employeeListCreated()) {
+            System.out.println("\n");
+            for (Job job : Job.values()) {
+                showEmployeesWithCertainJob(job);
+            }
+            showTotalEmployeeCount();
         }
-        showTotalEmployeeCount();
     }
 
     private void showEmployeesWithCertainJob(Job job) {
