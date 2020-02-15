@@ -1,38 +1,42 @@
 package com.example;
 
-public class EmployeeStatistics{
+import java.util.List;
+
+class EmployeeStatistics {
+
+    private static List<Employee> employees;
+
+    static void updateList(List<Employee> e) { employees = e; }
 
     void showAverageAge() {
-        int ageSum = 0;
-        for (Employee employee : employees) {
-            ageSum += employee.getAge();
-        }
-        int employeeAverageAge = ageSum / employeeQty;
-        System.out.println("Average age is: " + employeeAverageAge);
+        int ageSum = getEmployeeAgeSum();
+        int employeeAverageAge = ageSum / employees.size();
+        System.out.println("Average employee age is: " + employeeAverageAge);
+    }
+
+    private int getEmployeeAgeSum() {
+        return employees.stream().mapToInt(Employee::getAge).sum();
     }
 
     void showEmployeeQty() {
         System.out.println("\n");
         for (Job job : Job.values()) {
-            int employeeWithCurrentJob = 0;
-            for (Employee e : employees) {
-                if (e.getJob() == job) employeeWithCurrentJob++;
-            }
-            System.out.printf("%-25s%6d\n",
-                    job, employeeWithCurrentJob);
+            showEmployeesWithCertainJob(job);
         }
-        System.out.println("-------------------------------");
-        System.out.printf("%-25s%6d\n", "TOTAL:", employeeQty);
+        showTotalEmployeeCount();
     }
 
-    void showEmployees() {
-        if (employees.size() == 0) {
-            System.out.println("No employees found.");
-            return;
-        }
+    private void showEmployeesWithCertainJob(Job job) {
+        int count = 0;
         for (Employee e : employees) {
-            System.out.println(e);
+            if (e.getJob() == job) count++;
         }
+        System.out.printf("%-25s%6d\n", job, count);
+    }
+
+    private void showTotalEmployeeCount() {
+        System.out.println("-------------------------------");
+        System.out.printf("%-25s%6d\n", "TOTAL:", employees.size());
     }
 
 }

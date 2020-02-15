@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeeList {
+class EmployeeList {
 
     private static List<Employee> employees;
 
@@ -15,6 +15,7 @@ public class EmployeeList {
 
     static void FillEmployeeListAfterReadingFile(List<Employee> employeesFromFile) {
         employees.addAll(employeesFromFile);
+        EmployeeStatistics.updateList(employees);
     }
 
     void createNewEmployeeAndAddToList() {
@@ -27,6 +28,7 @@ public class EmployeeList {
     private static void addEmployeeToList(Employee e) {
         if (e != null)
             employees.add(e);
+        EmployeeStatistics.updateList(employees);
     }
 
     void deleteEmployee() {
@@ -35,6 +37,7 @@ public class EmployeeList {
             employees.remove(employee);
             System.out.println("Employee deleted successfully");
         }
+        EmployeeStatistics.updateList(employees);
     }
 
     private static Employee getEmployee() {
@@ -58,6 +61,16 @@ public class EmployeeList {
                 if (input.equals("x") || input.equals("X")) return null;
                 System.out.println("You should enter only numbers");
             }
+        }
+    }
+
+    void showEmployees() {
+        if (employees.size() == 0) {
+            System.out.println("No employees found.");
+            return;
+        }
+        for (Employee e : employees) {
+            System.out.println(e);
         }
     }
 

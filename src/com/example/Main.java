@@ -59,7 +59,7 @@ public class Main {
         else if (choice == 2)
             statistics.showAverageAge();
         else if (choice == 3)
-            statistics.showEmployees();
+            list.showEmployees();
         else if (choice == 4)
             statistics.showEmployeeQty();
         else if (choice == 5)

@@ -64,7 +64,7 @@ class EmployeeDataRequest {
             }
         }
     }
-    
+
     private boolean jobInRange(int choice) {
         if (choice < Job.values().length)
             return choice > 0;
